@@ -1,13 +1,25 @@
 package com.codegym.controller;
 
+import com.codegym.model.bean.Customer;
+import com.codegym.model.bean.Province;
+import com.codegym.model.service.CustomerService;
+import com.codegym.model.service.ProvinceService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class CustomerController {
     @Autowired
-    private ICustomerService customerService;
+    private CustomerService customerService;
     @Autowired
-    private IProvinceService provinceService;
+    private ProvinceService provinceService;
     @ModelAttribute("provinces")
     public Iterable<Province> provinces(){
         return provinceService.findAll();
